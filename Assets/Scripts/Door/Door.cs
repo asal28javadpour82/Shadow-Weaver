@@ -23,14 +23,16 @@ public class Door : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!isOpen)
-            return;
+private void OnTriggerEnter2D(Collider2D collision)
+{
+    Debug.Log("Something Entered : " + collision.name);
 
-        if (collision.CompareTag("Player"))
-        {
-            Debug.Log("LEVEL COMPLETE");
-        }
+    if (!isOpen)
+        return;
+
+    if (collision.CompareTag("Player"))
+    {
+        Debug.Log("LEVEL COMPLETE");
     }
+}
 }
