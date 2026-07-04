@@ -2,37 +2,29 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    [Header("Door Settings")]
-    public int requiredCrystals = 1;
-
     private bool isOpen = false;
 
-    private void Update()
+    public void OpenDoor()
     {
         if (isOpen)
             return;
 
-        if (GameManager.Instance == null)
+        isOpen = true;
+
+        Debug.Log("Door Opened");
+
+        // فعلاً فقط پیام چاپ می‌کنیم.
+        // بعداً انیمیشن و صدا هم اضافه می‌کنیم.
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!isOpen)
             return;
 
-        if (GameManager.Instance.crystalCount >= requiredCrystals)
+        if (collision.CompareTag("Player"))
         {
-            isOpen = true;
-
-            Debug.Log("Door Opened");
+            Debug.Log("LEVEL COMPLETE");
         }
     }
-
-private void OnTriggerEnter2D(Collider2D collision)
-{
-    Debug.Log("Something Entered : " + collision.name);
-
-    if (!isOpen)
-        return;
-
-    if (collision.CompareTag("Player"))
-    {
-        Debug.Log("LEVEL COMPLETE");
-    }
-}
 }
