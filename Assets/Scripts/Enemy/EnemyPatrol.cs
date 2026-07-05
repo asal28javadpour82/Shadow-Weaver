@@ -6,13 +6,23 @@ public class EnemyPatrol : MonoBehaviour
     public Transform rightPoint;
     public float moveSpeed = 2f;
 
+    // نور دشمن
+    public Transform enemyLight;
+
     private SpriteRenderer spriteRenderer;
     private bool movingRight = true;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.flipX = true;   // اگر حرکت اولیه به راست است
+
+        // حرکت اولیه به سمت راست
+        spriteRenderer.flipX = true;
+
+        if (enemyLight != null)
+        {
+            enemyLight.localPosition = new Vector3(0.8f, 0f, 0f);
+        }
     }
 
     void Update()
@@ -24,7 +34,13 @@ public class EnemyPatrol : MonoBehaviour
             if (transform.position.x >= rightPoint.position.x)
             {
                 movingRight = false;
+
                 spriteRenderer.flipX = false;
+
+                if (enemyLight != null)
+                {
+                    enemyLight.localPosition = new Vector3(-0.8f, 0f, 0f);
+                }
             }
         }
         else
@@ -34,7 +50,13 @@ public class EnemyPatrol : MonoBehaviour
             if (transform.position.x <= leftPoint.position.x)
             {
                 movingRight = true;
+
                 spriteRenderer.flipX = true;
+
+                if (enemyLight != null)
+                {
+                    enemyLight.localPosition = new Vector3(0.8f, 0f, 0f);
+                }
             }
         }
     }

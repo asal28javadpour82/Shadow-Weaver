@@ -4,6 +4,15 @@ public class Door : MonoBehaviour
 {
     private bool isOpen = false;
 
+    private Collider2D doorCollider;
+    private SpriteRenderer doorSprite;
+
+    private void Awake()
+    {
+        doorCollider = GetComponent<Collider2D>();
+        doorSprite = GetComponent<SpriteRenderer>();
+    }
+
     public void OpenDoor()
     {
         if (isOpen)
@@ -13,8 +22,11 @@ public class Door : MonoBehaviour
 
         Debug.Log("Door Opened");
 
-        // فعلاً فقط پیام چاپ می‌کنیم.
-        // بعداً انیمیشن و صدا هم اضافه می‌کنیم.
+        if (doorCollider != null)
+           // doorCollider.enabled = false;
+
+        if (doorSprite != null)
+            doorSprite.color = Color.green;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
