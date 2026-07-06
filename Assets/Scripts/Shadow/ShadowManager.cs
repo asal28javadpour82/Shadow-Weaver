@@ -45,17 +45,39 @@ public class ShadowManager : MonoBehaviour
 
         shadowMode = true;
 
+        // Player کنترل را از دست می‌دهد
         player.GetComponent<PlayerController>().enabled = false;
 
+        // Shadow از نقطه شروع ظاهر می‌شود
         shadow.transform.position = startPoint.position;
 
         shadow.SetActive(true);
 
         shadow.GetComponent<PlayerController>().enabled = true;
 
+        // دوربین روی Shadow
         if (cameraController != null)
         {
             cameraController.SetTarget(shadow.transform);
+        }
+    }
+
+    // ==========================
+    // Reset Shadow
+    // ==========================
+    public void ResetShadow()
+    {
+        shadowMode = false;
+
+        shadow.SetActive(false);
+
+        shadow.GetComponent<PlayerController>().enabled = false;
+
+        player.GetComponent<PlayerController>().enabled = true;
+
+        if (cameraController != null)
+        {
+            cameraController.SetTarget(player.transform);
         }
     }
 }
