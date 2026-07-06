@@ -6,23 +6,18 @@ public class EnemyPatrol : MonoBehaviour
     public Transform rightPoint;
     public float moveSpeed = 2f;
 
-    // نور دشمن
     public Transform enemyLight;
 
     private SpriteRenderer spriteRenderer;
     private bool movingRight = true;
 
+    public float lightOffset = 0.8f;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // حرکت اولیه به سمت راست
-        spriteRenderer.flipX = true;
-
-        if (enemyLight != null)
-        {
-            enemyLight.localPosition = new Vector3(0.8f, 0f, 0f);
-        }
+        FaceRight();
     }
 
     void Update()
@@ -34,13 +29,7 @@ public class EnemyPatrol : MonoBehaviour
             if (transform.position.x >= rightPoint.position.x)
             {
                 movingRight = false;
-
-                spriteRenderer.flipX = false;
-
-                if (enemyLight != null)
-                {
-                    enemyLight.localPosition = new Vector3(-0.8f, 0f, 0f);
-                }
+                FaceLeft();
             }
         }
         else
@@ -50,14 +39,34 @@ public class EnemyPatrol : MonoBehaviour
             if (transform.position.x <= leftPoint.position.x)
             {
                 movingRight = true;
-
-                spriteRenderer.flipX = true;
-
-                if (enemyLight != null)
-                {
-                    enemyLight.localPosition = new Vector3(0.8f, 0f, 0f);
-                }
+                FaceRight();
             }
+        }
+    }
+
+    void FaceRight()
+    {
+        spriteRenderer.flipX = true;
+
+        if (enemyLight != null)
+        {
+            // جلوى حلزون وقتى به راست مى‌رود
+            enemyLight.localPosition = new Vector3(-lightOffset,0,0);
+
+            enemyLight.localScale = new Vector3(1f, 1f, 1f);
+        }
+    }
+
+    void FaceLeft()
+    {
+        spriteRenderer.flipX = false;
+
+        if (enemyLight != null)
+        {
+            // جلوى حلزون وقتى به چپ مى‌رود
+            enemyLight.localPosition = new Vector3(-lightOffset, 0f, 0f);
+
+            enemyLight.localScale = new Vector3(-1f, 1f, 1f);
         }
     }
 }
