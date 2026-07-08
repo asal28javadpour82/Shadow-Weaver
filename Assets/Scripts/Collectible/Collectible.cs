@@ -6,8 +6,14 @@ public class Collectible : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            // پخش صدای جمع کردن کریستال
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlayCoin();
+
+            // اضافه شدن کریستال
             GameManager.Instance.AddCrystal();
 
+            // حذف کریستال
             Destroy(gameObject);
         }
     }

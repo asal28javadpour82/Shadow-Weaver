@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
 
         rb.velocity = new Vector2(move * moveSpeed, rb.velocity.y);
 
-        // Animator
         animator.SetFloat("Speed", Mathf.Abs(move));
         animator.SetBool("IsGrounded", isGrounded);
 
@@ -37,9 +36,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+
+            // پخش صدای پرش
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlayJump();
         }
 
-        // Flip Player
+        // Flip
         if (move > 0)
             transform.localScale = new Vector3(1, 1, 1);
 

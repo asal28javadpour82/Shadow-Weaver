@@ -22,8 +22,14 @@ public class Door : MonoBehaviour
 
         Debug.Log("Door Opened");
 
+        // پخش صدای باز شدن در
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlayDoor();
+
         if (doorCollider != null)
-           // doorCollider.enabled = false;
+        {
+            // doorCollider.enabled = false;
+        }
 
         if (doorSprite != null)
             doorSprite.color = Color.green;
@@ -36,7 +42,7 @@ public class Door : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("LEVEL COMPLETE");
+            StageCompleteManager.Instance.CompleteLevel();
         }
     }
 }
