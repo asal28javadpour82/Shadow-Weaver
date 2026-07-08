@@ -5,11 +5,18 @@ public class CameraController : MonoBehaviour
     public Transform target;
     public float smoothSpeed = 5f;
 
+    public float minX = -100f;
+    public float maxX = 100f;
+
     private Vector3 offset;
+    private float fixedY;
 
     void Start()
     {
         offset = transform.position - target.position;
+
+        // ارتفاع دوربین همیشه ثابت می‌ماند
+        fixedY = transform.position.y;
     }
 
     void LateUpdate()
@@ -17,7 +24,11 @@ public class CameraController : MonoBehaviour
         if (target == null)
             return;
 
-        Vector3 desiredPosition = target.position + offset;
+        Vector3 desiredPosition = new Vector3(
+            Mathf.Clamp(target.position.x + offset.x, minX, maxX),
+            fixedY,
+            transform.position.z
+        );
 
         transform.position = Vector3.Lerp(
             transform.position,
@@ -30,14 +41,10 @@ public class CameraController : MonoBehaviour
     {
         target = newTarget;
 
-        // دوربین فوراً روی هدف جدید قرار بگیرد
         transform.position = new Vector3(
-            target.position.x,
-            target.position.y,
+            Mathf.Clamp(target.position.x + offset.x, minX, maxX),
+            fixedY,
             transform.position.z
         );
-
-        // Offset جدید فقط در محور Z
-        offset = new Vector3(0f, 0f, offset.z);
     }
 }
