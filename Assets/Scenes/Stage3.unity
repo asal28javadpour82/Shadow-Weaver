@@ -3452,7 +3452,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1001674050}
         m_TargetAssemblyTypeName: StageCompleteManager, Assembly-CSharp
-        m_MethodName: NextStage
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

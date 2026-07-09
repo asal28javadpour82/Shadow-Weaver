@@ -416,7 +416,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 660ffc6e7060a9448847df7f645d1381, type: 3}
-  m_Color: {r: 0.9811321, g: 0.58775365, b: 0.8489969, a: 0.74509805}
+  m_Color: {r: 0.57071024, g: 0.7075472, b: 0.6985497, a: 0.74509805}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -599,6 +599,8 @@ MonoBehaviour:
   player: {fileID: 1270638936}
   startPoint: {fileID: 998094808}
   snail: {fileID: 33670943}
+  backgroundNormal: {fileID: 0}
+  backgroundMirror: {fileID: 0}
 --- !u!4 &266826528
 Transform:
   m_ObjectHideFlags: 0
@@ -3366,8 +3368,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1270638936}
   smoothSpeed: 5
-  minX: -19
-  maxX: 27
+  minX: -24
+  maxX: 28
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -3419,7 +3421,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6, y: 1.5, z: -15}
+  m_LocalPosition: {x: 4, y: 1.5, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1186768602}
@@ -4321,7 +4323,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -10
   m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
-  m_Color: {r: 0.9528302, g: 0.57978815, b: 0.78534204, a: 0.8862745}
+  m_Color: {r: 0.59385014, g: 0.7598847, b: 0.8018868, a: 0.8862745}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4421,6 +4423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageCompletePanel: {fileID: 1543808184}
+  nextSceneIndex: 3
 --- !u!4 &1001674051
 Transform:
   m_ObjectHideFlags: 0

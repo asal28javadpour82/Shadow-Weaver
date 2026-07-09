@@ -8,6 +8,9 @@ public class StageCompleteManager : MonoBehaviour
     [Header("UI")]
     public GameObject stageCompletePanel;
 
+    [Header("Scene Settings")]
+    public int nextSceneIndex;
+
     private bool levelCompleted = false;
 
     private void Awake()
@@ -20,26 +23,27 @@ public class StageCompleteManager : MonoBehaviour
         stageCompletePanel.SetActive(false);
     }
 
-public void CompleteLevel()
-{
-    Debug.Log("COMPLETE LEVEL CALLED");
+    public void CompleteLevel()
+    {
+        if (levelCompleted)
+            return;
 
-    if (levelCompleted)
-        return;
+        levelCompleted = true;
 
-    levelCompleted = true;
+        stageCompletePanel.SetActive(true);
 
-    stageCompletePanel.SetActive(true);
-
-    Time.timeScale = 0f;
-}
+        Time.timeScale = 0f;
+    }
 
     public void NextStage()
     {
-        // ادامه زمان
         Time.timeScale = 1f;
+        SceneManager.LoadScene(nextSceneIndex);
+    }
 
-        // فعلاً فقط Stage2 را لود می‌کند
-        SceneManager.LoadScene("Stage2");
+    public void MainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
     }
 }

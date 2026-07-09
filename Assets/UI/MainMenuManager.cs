@@ -1,16 +1,22 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    // دکمه Start
     public void StartGame()
     {
-        Debug.Log("Start Game Button Pressed");
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Stage1");
     }
 
+    // دکمه Exit
     public void ExitGame()
     {
-        Debug.Log("Exit Button Pressed");
-
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 }
