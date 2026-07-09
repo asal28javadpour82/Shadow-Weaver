@@ -20,19 +20,19 @@ public class StageCompleteManager : MonoBehaviour
         stageCompletePanel.SetActive(false);
     }
 
-    public void CompleteLevel()
-    {
-        if (levelCompleted)
-            return;
+public void CompleteLevel()
+{
+    Debug.Log("COMPLETE LEVEL CALLED");
 
-        levelCompleted = true;
+    if (levelCompleted)
+        return;
 
-        // نمایش پنل
-        stageCompletePanel.SetActive(true);
+    levelCompleted = true;
 
-        // توقف بازی
-        Time.timeScale = 0f;
-    }
+    stageCompletePanel.SetActive(true);
+
+    Time.timeScale = 0f;
+}
 
     public void NextStage()
     {

@@ -5,8 +5,8 @@ public class CameraController : MonoBehaviour
     public Transform target;
     public float smoothSpeed = 5f;
 
-    public float minX = -100f;
-    public float maxX = 100f;
+    public float minX = -18f;
+    public float maxX = 17f;
 
     private Vector3 offset;
     private float fixedY;

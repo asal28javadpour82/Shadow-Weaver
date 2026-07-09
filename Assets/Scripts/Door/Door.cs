@@ -26,23 +26,12 @@ public class Door : MonoBehaviour
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlayDoor();
 
-        if (doorCollider != null)
-        {
-            // doorCollider.enabled = false;
-        }
-
+        // تغییر رنگ در
         if (doorSprite != null)
             doorSprite.color = Color.green;
-    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!isOpen)
-            return;
-
-        if (collision.CompareTag("Player"))
-        {
+        // نمایش صفحه پایان مرحله
+        if (StageCompleteManager.Instance != null)
             StageCompleteManager.Instance.CompleteLevel();
-        }
     }
 }
