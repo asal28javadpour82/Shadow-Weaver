@@ -19,7 +19,6 @@ public class PlayerHealth : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
 
-        // محل شروع بازی، اولین Checkpoint است
         checkpointPosition = transform.position;
     }
 
@@ -35,6 +34,9 @@ public class PlayerHealth : MonoBehaviour
 
     IEnumerator Respawn()
     {
+        // 🔊 پخش صدای باخت
+        AudioManager.Instance.PlayGameOver();
+
         // مخفی شدن بازیکن
         spriteRenderer.enabled = false;
 

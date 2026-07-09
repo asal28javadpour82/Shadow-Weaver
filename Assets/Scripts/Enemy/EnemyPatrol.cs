@@ -2,16 +2,17 @@ using UnityEngine;
 
 public class EnemyPatrol : MonoBehaviour
 {
+    [Header("Movement")]
     public Transform leftPoint;
     public Transform rightPoint;
     public float moveSpeed = 2f;
 
+    [Header("Enemy Light")]
     public Transform enemyLight;
+    public float lightOffset = 0.35f;
 
     private SpriteRenderer spriteRenderer;
     private bool movingRight = true;
-
-    public float lightOffset = 0.8f;
 
     void Start()
     {
@@ -44,29 +45,25 @@ public class EnemyPatrol : MonoBehaviour
         }
     }
 
-    void FaceRight()
+void FaceRight()
+{
+    spriteRenderer.flipX = true;
+
+    if (enemyLight != null)
     {
-        spriteRenderer.flipX = true;
-
-        if (enemyLight != null)
-        {
-            // جلوى حلزون وقتى به راست مى‌رود
-            enemyLight.localPosition = new Vector3(-lightOffset,0,0);
-
-            enemyLight.localScale = new Vector3(1f, 1f, 1f);
-        }
+        // جلوى حلزون
+        enemyLight.localPosition = new Vector3(lightOffset, 0f, 0f);
     }
+}
 
-    void FaceLeft()
+void FaceLeft()
+{
+    spriteRenderer.flipX = false;
+
+    if (enemyLight != null)
     {
-        spriteRenderer.flipX = false;
-
-        if (enemyLight != null)
-        {
-            // جلوى حلزون وقتى به چپ مى‌رود
-            enemyLight.localPosition = new Vector3(-lightOffset, 0f, 0f);
-
-            enemyLight.localScale = new Vector3(-1f, 1f, 1f);
-        }
+        // پشت حلزون
+        enemyLight.localPosition = new Vector3(lightOffset, 0f, 0f);
     }
+}
 }
