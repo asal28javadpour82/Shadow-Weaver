@@ -18,6 +18,10 @@ public class MirrorWorldManager : MonoBehaviour
     [Header("Enemy")]
     public GameObject snail;
 
+    [Header("Background")]
+    public GameObject backgroundNormal;
+    public GameObject backgroundMirror;
+
     private TilemapCollider2D lightCollider;
     private TilemapCollider2D mirrorCollider;
 
@@ -33,11 +37,19 @@ public class MirrorWorldManager : MonoBehaviour
         lightCollider = lightWorld.GetComponent<TilemapCollider2D>();
         mirrorCollider = mirrorWorld.GetComponent<TilemapCollider2D>();
 
+        // شروع بازی در دنیای عادی
         lightWorld.SetActive(true);
         mirrorWorld.SetActive(false);
 
         if (snail != null)
             snail.SetActive(true);
+
+        // بک‌گراند
+        if (backgroundNormal != null)
+            backgroundNormal.SetActive(true);
+
+        if (backgroundMirror != null)
+            backgroundMirror.SetActive(false);
     }
 
     private void Update()
@@ -52,28 +64,36 @@ public class MirrorWorldManager : MonoBehaviour
     {
         isMirrorWorld = !isMirrorWorld;
 
+        // تغییر دنیا
         lightWorld.SetActive(!isMirrorWorld);
         mirrorWorld.SetActive(isMirrorWorld);
 
         RefreshCollider();
 
-        // Player برگردد ابتدای مرحله
+        // بازگرداندن Player به Start
         if (player != null && startPoint != null)
         {
             player.position = startPoint.position;
         }
 
-        // ریست کامل Shadow
+        // ریست Shadow
         if (ShadowManager.Instance != null)
         {
             ShadowManager.Instance.ResetShadow();
         }
 
-        // فقط در Light World دشمن فعال باشد
+        // فقط در دنیای عادی دشمن فعال باشد
         if (snail != null)
         {
             snail.SetActive(!isMirrorWorld);
         }
+
+        // تغییر بک‌گراند
+        if (backgroundNormal != null)
+            backgroundNormal.SetActive(!isMirrorWorld);
+
+        if (backgroundMirror != null)
+            backgroundMirror.SetActive(isMirrorWorld);
 
         Debug.Log(isMirrorWorld
             ? "Mirror World Activated"
